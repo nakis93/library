@@ -1,0 +1,32 @@
+.add-form {
+  /* box-shadow: */
+  background-color: #8c92ac;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 250px;
+
+  border-radius: 3%;
+}
+input {
+  padding: 3px;
+  border: #8c92ac;
+  border-radius: 15px;
+  margin: 3px 10px;
+}
+label {
+  color: rgba(0, 0, 0, 0.746);
+  display: flex;
+  justify-content: center;
+}
+#add-book {
+  color: white;
+  background-color: #8c92ac;
+  border: #5a5d6e solid 3px;
+  border-radius: 15px;
+  margin: 50px;
+}
+
+body {
+  background-color: #c7ceed;
+}
