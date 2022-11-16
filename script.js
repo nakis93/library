@@ -30,12 +30,30 @@ function displayBooksOnPage() {
   }
 
   // Loops over the library array and display to the cards
-  // let index = 0;
+  let index = 0;
   myLibrary.forEach((myLibrary) => {
     // forEach item in myLibrary array
     const card = document.createElement("div"); // create a div with class name 'card'
     card.classList.add("card");
     books.appendChild(card); // add div card to the books div
+
+    //Create remove book button and add class attribute for each array card
+    const removeBookButton = document.createElement("button");
+    removeBookButton.classList.add("remove-book-button");
+    removeBookButton.textContent = "Remove From Library";
+
+    //Link the data attribute of the remove button to the array and card
+    removeBookButton.dataset.linkedArray = index;
+    index++;
+    card.appendChild(removeBookButton);
+
+    //Start event listener/remove array item from array and card from parent div via data link
+    removeBookButton.addEventListener("click", removeBookFromLibrary);
+
+    function removeBookFromLibrary() {
+      let;
+    }
+
     for (let key in myLibrary) {
       // for every key in myLibrary array, create a paragraph that contains as text the key name and key value and add the paragraph to the card div
       const para = document.createElement("p");
@@ -63,9 +81,8 @@ function intakeFormData() {
   let author = document.getElementById("author").value;
   let pages = document.getElementById("pages").value;
   let read = document.getElementById("read").value;
-
   //Break out if form is incomplete or not valid
-  if (title == "" || author == "" || (pages = "") || read == "") {
+  if (title == "" || author == "" || pages == "" || read == "") {
     return;
   }
   // Call function to input the book data to array
