@@ -1,26 +1,84 @@
 "use strict";
 
 let myLibrary = [];
-function Book(title, author, pages) {
+
+// The Object constructor
+function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-
-  this.info = function () {
-    return `${title} by ${author}, ${pages} pages.`;
-  };
+  this.read = read;
+  // this.info = function () {
+  //   return `${title} by ${author}, ${pages} pages.`;
+  // };
 }
 
-function addBookToLibrary() {
-  //do magic shit here
+// A function that loops through myLibrary all the objects and shows them on screen
+function addBookToLibrary(title, author, pages, read) {
+  let book = new Book(title, author, pages, read);
+  myLibrary.push(book);
+  displayBooksOnPage();
 }
 
-const book1 = new Book("Lord of the Rings", "Tolkin", 450);
-console.log(book1);
-console.log(book1.info());
+function displayBooksOnPage() {
+  const books = document.querySelector(".books");
 
-const book2 = new Book("Harry Hotter", "Sexmaniac", 69);
-console.log(book2.info());
+  //Remove all previously displayed cards before I loop over array again
+  const removeDivs = document.querySelectorAll(".card");
+  for (let i = 0; i < removeDivs.length; i++) {
+    removeDivs[i].remove();
+  }
 
-const book3 = new Book("Maths for Idiots", "Garry Gorry", 2500);
-console.log(book3.info());
+  // Loops over the library array and display to the cards
+  // let index = 0;
+  myLibrary.forEach((myLibrary) => {
+    // forEach item in myLibrary array
+    const card = document.createElement("div"); // create a div with class name 'card'
+    card.classList.add("card");
+    books.appendChild(card); // add div card to the books div
+    for (let key in myLibrary) {
+      // for every key in myLibrary array, create a paragraph that contains as text the key name and key value and add the paragraph to the card div
+      const para = document.createElement("p");
+      para.textContent = `${key} : ${myLibrary[key]}`;
+      card.appendChild(para);
+    }
+  });
+}
+
+// Start event listener/display form to add a new book to library
+const addBookButton = document.querySelector(".add-book-button");
+addBookButton.addEventListener("click", displayTheForm);
+
+function displayTheForm() {
+  document.getElementById("add-book-form").style.display = "";
+}
+
+// Start event listener/add input to array for new entry form
+const submitButton = document.querySelector(".submit-button");
+submitButton.addEventListener("click", intakeFormData);
+
+//Transform form data to variables for intake
+function intakeFormData() {
+  let title = document.getElementById("title").value;
+  let author = document.getElementById("author").value;
+  let pages = document.getElementById("pages").value;
+  let read = document.getElementById("read").value;
+
+  //Break out if form is incomplete or not valid
+  if (title == "" || author == "" || (pages = "") || read == "") {
+    return;
+  }
+  // Call function to input the book data to array
+  addBookToLibrary(title, author, pages, read);
+
+  // Reset the form after successful submission
+  document.getElementById("add-book").reset();
+}
+
+// Start event listener for clear form button
+const clearButton = document.querySelector(".reset-button");
+clearButton.addEventListener("click", clearForm);
+
+function clearForm() {
+  document.getElementById("add-book").reset();
+}
