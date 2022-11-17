@@ -31,7 +31,7 @@ function displayBooksOnPage() {
 
   // Loops over the library array and display to the cards
   let index = 0;
-  myLibrary.forEach((myLibrarys) => {
+  myLibrary.forEach((myLibrary) => {
     // forEach item in myLibrary array
     const card = document.createElement("div"); // create a div with class name 'card'
     card.classList.add("card");
@@ -54,7 +54,7 @@ function displayBooksOnPage() {
     //   let;
     // }
 
-    for (let key in myLibrarys) {
+    for (let key in myLibrary) {
       // for every key in myLibrary array, create a paragraph that contains as text the key name and key value and add the paragraph to the card div
       const para = document.createElement("p");
       para.textContent = `${key} : ${myLibrary[key]}`;
@@ -69,6 +69,7 @@ addBookButton.addEventListener("click", displayTheForm);
 
 function displayTheForm() {
   document.getElementById("add-book-form").style.display = "";
+  addBookButton.style.display = "none";
 }
 
 // Start event listener/add input to array for new entry form
@@ -82,9 +83,8 @@ function intakeFormData() {
   let pages = document.getElementById("pages").value;
   let read = document.getElementById("read").value;
   //Break out if form is incomplete or not valid
-  if (title == "" || author == "" || pages == "" || read == "") {
-    return;
-  }
+  if (title == "" || author == "" || pages == "" || read == "") return;
+
   // Call function to input the book data to array
   addBookToLibrary(title, author, pages, read);
 
@@ -99,4 +99,3 @@ clearButton.addEventListener("click", clearForm);
 function clearForm() {
   document.getElementById("add-book").reset();
 }
-console.log(myLibrarys.indexOf(book));
