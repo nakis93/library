@@ -26,22 +26,24 @@ function displayBooksOnPage() {
     removeDivs[i].remove();
   }
 
-  // Loops over the library array and display to the cards
-  // let index = 0;
+  // Loops over the library array and display the cards
   myLibrary.forEach((myLibrary) => {
     // forEach item in myLibrary array
     const card = document.createElement("div"); // create a div with class name 'card'
     card.classList.add("card");
     books.appendChild(card); // add div card to the books div
-    const delbtn = document.createElement("button");
+    let delbtn = document.createElement("button");
+    delbtn.id = "delbtn";
     delbtn.textContent = `Remove book`;
     card.appendChild(delbtn);
-    delbtn.addEventListener("click", removeCard());
-
+    console.log(myLibrary);
+    delbtn.addEventListener("click", removeCard);
     function removeCard() {
-      //deletes the selected card
+      for (let i = 0; i < card.length; i++) {
+        card[i].remove();
+      }
     }
-
+    console.log(myLibrary);
     for (let key in myLibrary) {
       // for every key in myLibrary array, create a paragraph that contains as text the key name and key value and add the paragraph to the card div
       const para = document.createElement("p");
@@ -50,6 +52,11 @@ function displayBooksOnPage() {
     }
   });
 }
+// document.getElementById("delbtn").addEventListener("click", removeCard());
+
+// function removeCard() {
+//   card.remove();
+// }
 
 // Start event listener/display form to add a new book to library
 const addBookButton = document.querySelector(".add-book-button");
@@ -62,10 +69,10 @@ function displayTheForm() {
 
 // Start event listener/add input to array for new entry form
 const submitButton = document.querySelector(".submit-button");
-submitButton.addEventListener("click", intakeFormData);
+submitButton.addEventListener("click", userData);
 
-//Transform form data to variables for intake
-function intakeFormData() {
+//Set empty data equal to user input data
+function userData() {
   let title = document.getElementById("title").value;
   let author = document.getElementById("author").value;
   let pages = document.getElementById("pages").value;
@@ -77,7 +84,8 @@ function intakeFormData() {
   addBookToLibrary(title, author, pages, read);
 
   // Reset the form after successful submission
-  document.getElementById("add-book").reset();
+  // document.getElementById("add-book").reset();
+  clearForm();
 }
 
 // Start event listener for clear form button
@@ -87,4 +95,3 @@ clearButton.addEventListener("click", clearForm);
 function clearForm() {
   document.getElementById("add-book").reset();
 }
-// console.log(myLibrary);
