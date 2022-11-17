@@ -8,9 +8,6 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
-  // this.info = function () {
-  //   return `${title} by ${author}, ${pages} pages.`;
-  // };
 }
 
 // A function that loops through myLibrary all the objects and shows them on screen
@@ -30,29 +27,20 @@ function displayBooksOnPage() {
   }
 
   // Loops over the library array and display to the cards
-  let index = 0;
+  // let index = 0;
   myLibrary.forEach((myLibrary) => {
     // forEach item in myLibrary array
     const card = document.createElement("div"); // create a div with class name 'card'
     card.classList.add("card");
     books.appendChild(card); // add div card to the books div
+    const delbtn = document.createElement("button");
+    delbtn.textContent = `Remove book`;
+    card.appendChild(delbtn);
+    delbtn.addEventListener("click", removeCard());
 
-    //Create remove book button and add class attribute for each array card
-    // const removeBookButton = document.createElement("button");
-    // removeBookButton.classList.add("remove-book-button");
-    // removeBookButton.textContent = "Remove From Library";
-
-    // //Link the data attribute of the remove button to the array and card
-    // removeBookButton.dataset.linkedArray = index;
-    // index++;
-    // card.appendChild(removeBookButton);
-
-    // //Start event listener/remove array item from array and card from parent div via data link
-    // removeBookButton.addEventListener("click", removeBookFromLibrary);
-
-    // function removeBookFromLibrary() {
-    //   let;
-    // }
+    function removeCard() {
+      //deletes the selected card
+    }
 
     for (let key in myLibrary) {
       // for every key in myLibrary array, create a paragraph that contains as text the key name and key value and add the paragraph to the card div
@@ -99,3 +87,4 @@ clearButton.addEventListener("click", clearForm);
 function clearForm() {
   document.getElementById("add-book").reset();
 }
+// console.log(myLibrary);

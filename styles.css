@@ -14,20 +14,28 @@ h1 {
   font-size: 50px;
   text-shadow: 3px 3px 3px #ababab;
 }
+div #add-book-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 div.form {
   display: flex;
   justify-content: center;
 }
 
+label {
+  display: flex;
+  justify-content: center;
+}
 input {
+  height: 20px;
   margin-top: 5px;
   border: solid grey 2px;
   border-radius: 5px;
 
   width: 199px;
-
-  display: block;
 }
 
 button {
@@ -36,22 +44,31 @@ button {
   margin: 5px 5px;
   border: solid grey 2px;
   border-radius: 5px;
-  display: flex;
-  justify-content: center;
-}
-.books-heading {
-  display: block;
-  justify-content: flex-end;
-}
-.form-heading {
-  display: block;
 }
 
 .card {
-  border: solid black;
+  border-radius: 5px;
+
+  border: solid grey 2px;
 }
 
 button.add-book-button {
-  /* font-family: "Sofia", sans-serif; */
   font-size: 20px;
 }
+.submit-button {
+  width: max-content;
+  padding: 1px 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.reset-button {
+  width: max-content;
+
+  padding: 1px 3px;
+}
+/* footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: last baseline;
+} */
